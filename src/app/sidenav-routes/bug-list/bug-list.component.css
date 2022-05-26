@@ -1,0 +1,46 @@
+.card{
+   width: 280px;
+   margin: 10px;
+   
+}
+
+label{
+    padding: 5px;
+    font-weight: bold;
+}
+
+mat-option{
+    font-weight: bold;
+}
+mat-card-title{
+    text-align: center;
+    font-size: large;
+}
+mat-card-footer{
+    text-align: right;
+    padding: 10px;
+}
+mat-card-content{
+    text-align: center;
+}
+
+h3{
+    width: 15%;
+}
+mat-select{
+    width: 10%;
+}
+.example-button-row{
+    position: fixed !important;
+    right: 25px;
+    bottom: 25px;
+}
+mat-form-field{
+    padding-left: 200px;
+}
+
+.loadCard{
+    text-align: center;
+}
+
+

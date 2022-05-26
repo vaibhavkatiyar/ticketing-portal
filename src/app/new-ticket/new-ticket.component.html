@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>New Ticket</h2>
+<form [formGroup]="Tickets" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+      <mat-form-field>
+        <textarea type="text" autocomplete="off" matInput placeholder="Subject" ngModel #subject name="subject" formControlName="subject"  required></textarea>
+        <mat-error *ngIf="subject.required">You must enter the subject</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <textarea type="text" matInput placeholder="Description" class="text-area" #count maxlength="400" ngModel name="description" formControlName="description" required></textarea>
+        <mat-hint align="end">{{count.value.length || 0}}/400 characters</mat-hint>
+      </mat-form-field>
+      <h3>Environment</h3>
+      <mat-radio-group ngModel name="environment"  formControlName="environment" required>
+        <mat-radio-button value="QA" color="primary">QA</mat-radio-button>
+        <mat-radio-button value="Production" color="primary">Production</mat-radio-button>
+        <mat-radio-button value="Dev" color="primary">Dev</mat-radio-button>
+      </mat-radio-group>
+      <h3>Severity Level</h3>
+      
+      <mat-select ngModel name="severity" formControlName="severity" required>
+        <mat-option value="High">High</mat-option>
+        <mat-option value="Medium">Medium</mat-option>
+        <mat-option value="Low">Low</mat-option>
+      </mat-select>
+
+      <mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="Tickets.status==='INVALID'">Submit</button>
+      <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
+      </mat-dialog-actions>
+  
+    </div>
+</form>

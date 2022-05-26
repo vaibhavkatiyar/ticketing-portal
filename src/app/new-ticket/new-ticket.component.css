@@ -1,0 +1,29 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+  }
+  .text-area{
+    height: 100px;
+  }
+  mat-radio-group{
+    padding-bottom: 15px;
+  }
+  mat-radio-button{
+    padding-right:  5px;
+  }
+  .high{
+    color: red;
+    font-weight: bold;
+  }
+  .medium{
+    color: orange;
+    font-weight: bold;
+  }
+  .low{
+    color: yellow;
+    font-weight: bold;
+  }
+  
+
+  

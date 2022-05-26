@@ -1,0 +1,33 @@
+<mat-toolbar class="mat-elevation-z8">
+    <h1>Ticketing Portal</h1>
+</mat-toolbar>
+
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" mode="side" opened>
+  
+      <mat-divider></mat-divider>
+  
+      <button mat-button class="menu-button" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="side_routes/bug_list" >
+        <mat-icon>bug_report</mat-icon>
+        <span>Bug List</span>
+      </button>
+      <hr>
+      <button mat-button class="menu-button" routerLinkActive="active" routerLink="side_routes/trash" >
+        <mat-icon>delete</mat-icon>
+        <span>Trash</span>
+      </button>
+      <hr>
+  
+      <mat-divider></mat-divider>
+  
+      
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  
