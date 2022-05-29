@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BugListComponent } from './sidenav-routes/bug-list/bug-list.component';
 import { BugDetailsComponent } from './bug-details/bug-details.component';
-import { TrashComponent } from './sidenav-routes/trash/trash.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -24,10 +23,13 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRippleModule} from '@angular/material/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BugDetailsFilterPipe } from './bug-details-filter.pipe';
+
+
 
 const appRoutes: Routes = [
   {path: '',component: BugListComponent},
-  {path: 'bug_details',component: BugDetailsComponent},
+  {path: 'bug_details/:id',component: BugDetailsComponent},
   {path: 'new_ticket',component: NewTicketComponent},
 ];
 
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     AppComponent,
     BugDetailsComponent,
     SidenavComponent,
-    NewTicketComponent
+    NewTicketComponent,
+    BugDetailsFilterPipe
   ],
   imports: [
     BrowserModule,

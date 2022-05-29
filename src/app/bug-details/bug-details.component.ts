@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs';
-import { NewTicketComponent } from '../new-ticket/new-ticket.component';
+import { ActivatedRoute } from '@angular/router';
+import { BugListComponent } from '../sidenav-routes/bug-list/bug-list.component';
+import { FormServiceService } from '../form-service.service';
+
 
 @Component({
   selector: 'app-bug-details',
@@ -9,22 +10,31 @@ import { NewTicketComponent } from '../new-ticket/new-ticket.component';
   styleUrls: ['./bug-details.component.css']
 })
 export class BugDetailsComponent implements OnInit {
-  ticketArray:any=[];
 
-  constructor(private http: HttpClient) { }
+  ticketId:any;
+  cardDisplayDetails:Array<any>=[];
+
+   constructor(private route: ActivatedRoute,private fservice: FormServiceService) {
+    
+   }
 
   ngOnInit(): void {
-    this.fetchTicket();
-    console.log(this.ticketArray);
-  }
-  private fetchTicket(){
-    this.ticketArray.push();
 
-    // this.http.get('https://ticketing-portal-cf2c1-default-rtdb.firebaseio.com/bug_details.json')
-    // .subscribe(bug_details =>{
-      
-    //   this.ticketArray.push(bug_details);
-    // });
+    let z  = this.fservice.fetchValuesFromLocalStorage()
+    if(z!== undefined)
+    {
+      if(z.length>1)
+      {
+        this.cardDisplayDetails = z  
+      }
+      else
+      {
+        this.cardDisplayDetails.push(z)
+      }
+    }
+
+    this.ticketId = this.route.snapshot.paramMap.get('id');
+    console.log(this.ticketId);
   }
   
 

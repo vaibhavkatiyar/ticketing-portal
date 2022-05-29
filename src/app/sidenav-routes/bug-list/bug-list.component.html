@@ -1,26 +1,26 @@
 <label>Filter by Severity Level -</label>
-<mat-select [(value)]="selected1" [ngStyle]="{'font-weight': bold}">
+<mat-select [(value)]="selected1" [ngStyle]="{'font-weight': bold}" (selectionChange)="severitySelected($event.value)">
     <mat-option value="None">None</mat-option>
     <mat-option value="High">High</mat-option>
     <mat-option value="Medium">Medium</mat-option>
     <mat-option value="Low">Low</mat-option>
 </mat-select>
 <label>Filter by Date -</label>
-<mat-select [(value)]="selected2" [ngStyle]="{'font-weight': bold}">
+<mat-select [(value)]="selected2" [ngStyle]="{'font-weight': bold}" (selectionChange)="dateSelected($event.value)">
     <mat-option value="none">None</mat-option>
     <mat-option value="newest">Newest</mat-option>
     <mat-option value="oldest">Oldest</mat-option>
 </mat-select>
 <mat-form-field appearance="outline">
     <mat-label>Search</mat-label>
-    <input matInput placeholder="Search by ID..." autocomplete="off">
+    <input matInput placeholder="Search by ID..." autocomplete="off" (keyup)="inputid($event)">
     <mat-icon matSuffix>search</mat-icon>
 </mat-form-field>
 <hr>
 <div fxLayout="row wrap" fxLayoutAlign="space-between center" [style.margin-top]="'12px'">
-    <div *ngFor="let card of cardDisplay">
+    <div *ngFor="let card of cardDisplay | pipeFilter: severity | dateFilter: filterbydate | idSearchFilter: inputId ">
         <div class="card">
-            <mat-card matRipple class="clickable" routerLink="/bug_details">
+            <mat-card matRipple class="clickable"  (click)="clickcard(card.id)">
                 <mat-card-title>{{card.subject}}</mat-card-title>
                 <mat-card-content [ngStyle]="{'color':getColor(card.severity)}">{{card.severity}}</mat-card-content>
                 <mat-card-content>ID: {{card.id}}</mat-card-content>

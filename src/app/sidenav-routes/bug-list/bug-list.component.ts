@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {MatDialogConfig,MatDialog} from '@angular/material/dialog';
 import { NewTicketComponent } from '../../new-ticket/new-ticket.component';
 import { FormServiceService } from 'src/app/form-service.service';
 import { AutoUpdateBugListService } from 'src/app/auto-update-bug-list.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,40 +18,67 @@ export class BugListComponent implements OnInit {
   selected2 = 'none';
   bold = 'bold';
 
-  messageReceived: any;
-  //private subscriptionName: Subscription;
+  severity:any;
+  filterbydate:any;
+  inputId:any;
 
-  // cardDisplay:{
-  //   id:number;
-  //   subject:string;
-  //   description:string;
-  //   environment:string;
-  //   severity:string;
-  //   date: string;
 
-  // }[] | undefined;
+  @Output() view = new EventEmitter<number>();
 
-  cardDisplay:any[]=[];
+
+  notifierSubscription: Subscription = this.auto_up.subjectNotifier.subscribe(notified => {
+    this.ngOnInit();
+    // originator has notified me. refresh my data here.
+  });
+
+  cardDisplay:Array<any>=[];
 
   currentDate = new Date();
   
-  constructor(private dialog: MatDialog,private fservice: FormServiceService,private auto_up: AutoUpdateBugListService) { }
+  constructor(private dialog: MatDialog,private fservice: FormServiceService,private auto_up: AutoUpdateBugListService, private router: Router,) { }
+
 
   ngOnInit(): void {
-    const a=localStorage.getItem("ticket_data");
+    // const a=localStorage.getItem("ticket_data");
     
-    console.log(typeof a);
-    console.log(a);
+    // console.log(typeof a);
+    // console.log(a);
 
-    const b=JSON.parse(a || '{}');
-    console.log(b);
-    console.log(typeof b);
-    console.log(this.cardDisplay);
-    this.cardDisplay.push(...b);
-    
-    // this.cardDisplay.push(JSON.parse(localStorage.getItem("ticket_data") || '{}'));
+    // const b=JSON.parse(a || '{}');
+    // console.log(b);
+    // console.log(typeof b);
     // console.log(this.cardDisplay);
+    // this.cardDisplay.push(...b);
+    let z  = this.fservice.fetchValuesFromLocalStorage()
+    if(z!== undefined)
+    {
+      if(z.length>1)
+      {
+        this.cardDisplay = z  
+      }
+      else
+      {
+        this.cardDisplay.push(z)
+      }
+    }
+
+
+    
+    
+    // this.cardDisplay=JSON.parse(localStorage.getItem("ticket_data") || '{}');
+    // console.log(this.cardDisplay);
+
+
+    // this.subscriptionName= this.auto_up.getUpdate().subscribe
+    //          (message => { //message contains the data sent from service
+    //          this.messageReceived = message;
+    //          if(this.messageReceived==="submit button pressed")
+    //          {
+    //             console.log("yessss");
+    //          }
+    //          });
   }
+
   openDialog(){
     const dialogConfig = new MatDialogConfig();
 
@@ -72,14 +100,28 @@ export class BugListComponent implements OnInit {
     }
   }
   severitySelected(value:any){
-     return value;
+     this.severity = value;
   }
 
-  // updatecard(){
-  //   this.cardDisplay = JSON.parse(localStorage.getItem("ticket_data") || '{}');
-  //   this.ngOnInit();
-  // }
+  dateSelected(value:any){
+      this.filterbydate=value;
+      console.log(this.filterbydate);
+  }
+
+  clickcard(ticketid:number)
+  {
+    this.router.navigate(['/bug_details', ticketid]);
+  }
   
+  inputid(event:any){
+    this.inputId = event.target.value;
+    console.log(this.inputId);
+    console.log(typeof this.inputId);
+  }
+
+
   
+
 }
+
 

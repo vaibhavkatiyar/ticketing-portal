@@ -5,16 +5,13 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AutoUpdateBugListService {
-
-  private subjectName = new Subject<any>();
+  subjectNotifier: Subject<null> = new Subject<null>();
+  
 
   constructor() { }
 
-  sendUpdate(message : string){
-    this.subjectName.next({ text: message }); 
+  notifyAboutChange() {
+    this.subjectNotifier.next(null);
   }
+}
 
-  getUpdate(): Observable<any> { //the receiver component calls this function 
-    return this.subjectName.asObservable(); //it returns as an observable to which the receiver funtion will subscribe
-}
-}
