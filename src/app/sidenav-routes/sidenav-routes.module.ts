@@ -14,9 +14,9 @@ import { SidenavRoutesComponent } from './sidenav-routes.component';
 import { Routes,RouterModule } from '@angular/router';
 import { BugListComponent } from './bug-list/bug-list.component';
 import { TrashComponent } from './trash/trash.component';
-import { PipeFilterPipe } from 'src/app/pipe-filter.pipe';
-import { DateFilterPipe } from 'src/app/date-filter.pipe';
-import { IdSearchFilterPipe } from '../id-search-filter.pipe';
+import { PipeFilterPipe } from 'src/app/Filters/pipe-filter.pipe';
+import { DateFilterPipe } from 'src/app/Filters/date-filter.pipe';
+import { IdSearchFilterPipe } from '../Filters/id-search-filter.pipe';
 
 
 const appRoutes: Routes = [

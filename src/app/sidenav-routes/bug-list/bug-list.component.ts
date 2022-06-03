@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {MatDialogConfig,MatDialog} from '@angular/material/dialog';
-import { NewTicketComponent } from '../../new-ticket/new-ticket.component';
-import { FormServiceService } from 'src/app/form-service.service';
-import { AutoUpdateBugListService } from 'src/app/auto-update-bug-list.service';
+import { NewTicketComponent } from '../../components/new-ticket/new-ticket.component';
+import { FormServiceService } from 'src/app/Services/form-service.service';
+import { AutoUpdateBugListService } from 'src/app/Services/auto-update-bug-list.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -39,44 +39,20 @@ export class BugListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // const a=localStorage.getItem("ticket_data");
-    
-    // console.log(typeof a);
-    // console.log(a);
-
-    // const b=JSON.parse(a || '{}');
-    // console.log(b);
-    // console.log(typeof b);
-    // console.log(this.cardDisplay);
-    // this.cardDisplay.push(...b);
     let z  = this.fservice.fetchValuesFromLocalStorage()
     if(z!== undefined)
     {
       if(z.length>1)
       {
-        this.cardDisplay = z  
+        this.cardDisplay = z
+        console.log(this.cardDisplay)
       }
       else
       {
         this.cardDisplay.push(z)
+        console.log(this.cardDisplay)
       }
     }
-
-
-    
-    
-    // this.cardDisplay=JSON.parse(localStorage.getItem("ticket_data") || '{}');
-    // console.log(this.cardDisplay);
-
-
-    // this.subscriptionName= this.auto_up.getUpdate().subscribe
-    //          (message => { //message contains the data sent from service
-    //          this.messageReceived = message;
-    //          if(this.messageReceived==="submit button pressed")
-    //          {
-    //             console.log("yessss");
-    //          }
-    //          });
   }
 
   openDialog(){
@@ -115,13 +91,7 @@ export class BugListComponent implements OnInit {
   
   inputid(event:any){
     this.inputId = event.target.value;
-    console.log(this.inputId);
-    console.log(typeof this.inputId);
   }
-
-
-  
-
 }
 
 

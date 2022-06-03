@@ -13,7 +13,7 @@
 </mat-select>
 <mat-form-field appearance="outline">
     <mat-label>Search</mat-label>
-    <input matInput placeholder="Search by ID..." autocomplete="off" (keyup)="inputid($event)">
+    <input matInput placeholder="Search by Subject..." autocomplete="off" (keyup)="inputid($event)">
     <mat-icon matSuffix>search</mat-icon>
 </mat-form-field>
 <hr>
@@ -22,17 +22,14 @@
         <div class="card">
             <mat-card matRipple class="clickable"  (click)="clickcard(card.id)">
                 <mat-card-title>{{card.subject}}</mat-card-title>
-                <mat-card-content [ngStyle]="{'color':getColor(card.severity)}">{{card.severity}}</mat-card-content>
+                <mat-card-content>{{ card.description | slice:0:20 }}{{card.description.length > 20 ? '...' : ''}}</mat-card-content>
+                <mat-card-content [ngStyle]="{'color':getColor(card.severity)}"><strong>{{card.severity}}</strong></mat-card-content>
                 <mat-card-content>ID: {{card.id}}</mat-card-content>
                 <mat-card-footer>{{card.date}}</mat-card-footer>
             </mat-card>
         </div>
     </div>
 </div>
-
-<!-- <div class="loadCard">
-    <button mat-raised-button color="primary" (click)="loadnewTickets()">Load New Tickets</button>
-</div> -->
 
 <div class="example-button-row">
     <div class="example-flex-container">

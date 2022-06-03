@@ -3,19 +3,16 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-
-export class FormServiceService {
+export class TrashCardsService {
 
   formData:any[]=[];
 
-  id=0;
-
   constructor() { }
+
 
   onSubmit(value:any)
   {
-    value={...value,id:this.id++}
-    let LocalStorageValue:any = localStorage.getItem("ticket_data");
+    let LocalStorageValue:any = localStorage.getItem("trash_data");
     console.log(LocalStorageValue);
 
     if(LocalStorageValue!==null)
@@ -26,28 +23,29 @@ export class FormServiceService {
       {
           this.formData = FormValue
           this.formData.push(value)
-          localStorage.setItem("ticket_data",JSON.stringify(this.formData));
+          localStorage.setItem("trash_data",JSON.stringify(this.formData));
       }
       else
       {
         this.formData.push(FormValue)
         this.formData.push(value)
-        localStorage.setItem("ticket_data",JSON.stringify(this.formData));
+        localStorage.setItem("trash_data",JSON.stringify(this.formData));
         this.formData = []
         
       }
     }
     else
     {
-      localStorage.setItem("ticket_data",JSON.stringify(value));
+      localStorage.setItem("trash_data",JSON.stringify(value));
       
     }
   }
 
+
   fetchValuesFromLocalStorage()
   {
     let arrayofValues:any=[]
-    let LocalStorageValuetodisplay:any = localStorage.getItem("ticket_data");
+    let LocalStorageValuetodisplay:any = localStorage.getItem("trash_data");
 
     if(LocalStorageValuetodisplay!==null)
     {
@@ -65,5 +63,7 @@ export class FormServiceService {
       }    
       return arrayofValues
     }
+
+
 }
 }

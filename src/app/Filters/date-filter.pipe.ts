@@ -10,7 +10,7 @@ export class DateFilterPipe implements PipeTransform {
         return cardDisplay;
     }
 
-    if(filter === 'newest' || filter==="none")
+    if(filter === 'newest' )
     {
       return cardDisplay.sort((a: any, b: any) => {
       return <any>new Date(b.date) - <any>new Date(a.date);})
@@ -18,7 +18,7 @@ export class DateFilterPipe implements PipeTransform {
     // filter items array, items which match and return true will be
     // kept, false will be filtered out
     
-    if(filter === 'oldest')
+    if(filter === 'oldest' || filter==="none")
     {
         return cardDisplay.sort((a: any, b: any) => {
         return <any>new Date(a.date) - <any>new Date(b.date);

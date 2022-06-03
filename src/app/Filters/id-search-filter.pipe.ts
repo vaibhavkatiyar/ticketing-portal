@@ -10,7 +10,7 @@ export class IdSearchFilterPipe implements PipeTransform {
     }
     // filter items array, items which match and return true will be
     // kept, false will be filtered out
-    return cardDisplay.filter(card => card.id == filter);
+    return cardDisplay.filter(card => card.subject.includes(filter));
 }
   
 

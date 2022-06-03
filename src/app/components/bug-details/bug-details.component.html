@@ -1,0 +1,20 @@
+<div *ngFor="let card of cardDisplayDetails | bugDetailsFilter: ticketId">
+    <div class="bug-details-card">
+        <mat-card>
+            <mat-card-title>Ticket ID : {{card.id}}</mat-card-title>
+            <mat-card-content>Subject : {{card.subject}}</mat-card-content>
+            <mat-card-content>Description : {{card.description}}</mat-card-content>
+            <mat-card-content>Environment : {{card.environment}}</mat-card-content>
+            <mat-card-content>Severity : {{card.severity}}</mat-card-content>
+        </mat-card>
+    </div>
+    <div class="button">
+        <button mat-raised-button color="primary" (click)="movetoTrash(card)" class="delete">Delete
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-raised-button color="primary" (click)="openDialog(card)" class="edit">Edit
+            <mat-icon class="edit-icon">edit</mat-icon>
+        </button>
+    </div>
+</div>
+

@@ -1,0 +1,17 @@
+.card{
+    width: 280px;
+    margin: 10px;
+    
+ }
+
+ mat-card-title{
+    text-align: center;
+    font-size: large;
+}
+mat-card-footer{
+    text-align: right;
+    padding: 10px;
+}
+mat-card-content{
+    text-align: center;
+}

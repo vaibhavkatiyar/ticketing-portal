@@ -1,1 +1,17 @@
-<p>trash works!</p>
+<div fxLayout="row wrap" fxLayoutAlign="space-between center" [style.margin-top]="'12px'">
+    <div *ngFor="let card of trashCards">
+        <div class="card">
+            <mat-card>
+                <mat-card-title>{{card.subject}}</mat-card-title>
+                <mat-card-content [ngStyle]="{'color':getColor(card.severity)}"><strong>{{card.severity}}</strong></mat-card-content>
+                <mat-card-content>ID: {{card.id}}</mat-card-content>
+                <mat-card-content><button mat-raised-button color="primary" class="restore" (click)="restore(card)">Restore
+                    <mat-icon>restore_from_trash</mat-icon>
+                </button>
+                </mat-card-content>
+                <mat-card-footer>{{card.date}}</mat-card-footer>
+            </mat-card>
+        </div>
+        
+    </div>
+</div>
